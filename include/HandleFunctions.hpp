@@ -64,13 +64,12 @@ inline int handleBlockCipher(po::variables_map& vm) {
 }
 
 inline int handleStreamCipher(po::variables_map& vm) {
-    /*std::unordered_map<std::string, std::string> variablesMap = {};
+    std::unordered_map<std::string, std::string> variablesMap = {};
     if (getParamsCipher(vm, variablesMap) == -1) {
         return -1;
     }
-    StreamCipher streamCipher(std::move(variablesMap["inputFile"]),
-                              std::move(variablesMap["outputFile"]));*/
-    StreamCipher streamCipher("file", "cipheredFile");
+    StreamCipher streamCipher("", std::move(variablesMap["inputFile"]),
+                              std::move(variablesMap["outputFile"]));
     streamCipher.cipher();
     return 0;
 }
@@ -88,13 +87,12 @@ inline int handleBlockDecipher(po::variables_map& vm) {
 }
 
 inline int handleStreamDecipher(po::variables_map& vm) {
-    /*std::unordered_map<std::string, std::string> variablesMap = {};
-    if (getParamsCipher(vm, variablesMap) == -1) {
+    std::unordered_map<std::string, std::string> variablesMap = {};
+    if (getParamsBlock(vm, variablesMap) == -1) {
         return -1;
     }
-    StreamCipher streamCipher(std::move(variablesMap["inputFile"]),
-                              std::move(variablesMap["outputFile"]));*/
-    StreamCipher streamCipher("cipheredFile", "decipheredFile");
+    StreamCipher streamCipher(std::move(variablesMap["key"]), std::move(variablesMap["inputFile"]),
+                              std::move(variablesMap["outputFile"]));
     streamCipher.decipher();
     return 0;
 }

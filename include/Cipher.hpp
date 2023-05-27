@@ -27,11 +27,12 @@ private:
 
 class StreamCipher : public Cipher {
 public:
-    StreamCipher(std::string&& input, std::string&& output) :
-    _input(std::move(input)), _output(std::move(output)) {}
+    StreamCipher(std::string&& key, std::string&& input, std::string&& output) :
+    _key(std::move(key)), _input(std::move(input)), _output(std::move(output)) {}
     void cipher() override;
     void decipher() override;
 private:
+    std::string _key;
     std::string _input;
     std::string _output;
 };
